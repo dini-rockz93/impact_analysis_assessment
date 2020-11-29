@@ -15,7 +15,7 @@ class TestProgram(unittest.TestCase):
         print(root)
         actual = program.nodeDepth(root)
         try:
-            if self.assertEqual(actual, 26) is None:
+            if self.assertEqual(actual, 525) is None:
                 print("Success, test case passed")
         except AssertionError:
             print("Test case failed")
@@ -25,13 +25,37 @@ class TestProgram(unittest.TestCase):
         root = program.BinaryTree(1)
         root.left = program.BinaryTree(2)
         actual = program.nodeDepth(root)
+        
         try:
-            if self.assertEqual(actual, 1) is None:
+            if self.assertEqual(actual, 3) is None:
                 print("Success, test case passed")
         except AssertionError:
             print("Test case failed")
+    
+    def json_input_tc(self, json_data):
+        
+        
+        root =  program.deserialize(json_data)
+        actual = program.nodeDepth(root)
+        print(actual)
+        try:
+            if self.assertEqual(actual, 123) is None:
+                print("Success, test case passed")
+        except AssertionError:
+            print("Test case failed")
+        
+
+# sample json format
+
+out = {
+    'value': 1, 
+    'left': {'value': 2}, 
+    'right': {'value': 3, 'left': {'value': 4}, 'right': {'value': 5}}
+}
+
 
 test = TestProgram()
 test.test_case_1()
 test.test_case_2()
+test.json_input_tc(out)
 
